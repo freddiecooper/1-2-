@@ -18,29 +18,41 @@ public class playerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(Input.GetKey ("up"))
+        Vector2 velocity1 = rb.velocity;
+        velocity1.x = 0;
+        velocity1.y = 35;
+        
+        if(Input.GetKeyDown ("up"))
         {
-            rb.velocity = new Vector3(0, 10, 0);
-        }
+            rb.velocity = velocity1;
+        } 
 
-        float xSpeed = -20.0f;        
+         
+
+        Vector2 velocity2 = rb.velocity;
+        velocity2.x = -10;
+            
 
         if (Input.GetKey("left"))
         {
-            transform.position += new Vector3(xSpeed * Time.deltaTime, 0, 0);
+            rb.velocity = velocity2;
         }
 
+        Vector2 velocity3 = rb.velocity;
+        velocity3.x = 10;
+         
 
         if (Input.GetKey("right"))
         {
-            transform.position += new Vector3(-xSpeed * Time.deltaTime, 0, 0);
+            rb.velocity = velocity3;
         }   
 
 
         if (Input.GetKey("x"))
         {
             lives = 0;
-        }
+        } 
+          
     }
 }
+
