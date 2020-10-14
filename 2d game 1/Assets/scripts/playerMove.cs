@@ -6,6 +6,9 @@ public class playerMove : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    SpriteRenderer sr;
+    public Sprite standSprite;
+    public Sprite jumpSprite;
     public int lives = 1;
 
     Rigidbody2D rb;
@@ -13,45 +16,51 @@ public class playerMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 velocity1 = rb.velocity;
-        velocity1.x = 0;
-        velocity1.y = 35;
+        Vector2 velocity = rb.velocity;
+        
         
         if(Input.GetKeyDown ("up"))
-        {
-            rb.velocity = velocity1;
+        {           
+            if(velocity.y == 0)
+            {
+                velocity.y = 40;
+            }
         } 
-
-         
-
-        Vector2 velocity2 = rb.velocity;
-        velocity2.x = -10;
-            
-
+          
         if (Input.GetKey("left"))
         {
-            rb.velocity = velocity2;
-        }
-
-        Vector2 velocity3 = rb.velocity;
-        velocity3.x = 10;
+            velocity.x = -10;
+        }     
          
 
         if (Input.GetKey("right"))
         {
-            rb.velocity = velocity3;
-        }   
+            velocity.x = 10;
+        }
+        rb.velocity = velocity;
 
 
         if (Input.GetKey("x"))
         {
             lives = 0;
         } 
+
+
+        if (velocity.y > 0.01f)
+        {
+            sr.sprite = jumpSprite;
+        }
+
+        else
+        {
+            sr.sprite = standSprite;
+        }
           
     }
 }

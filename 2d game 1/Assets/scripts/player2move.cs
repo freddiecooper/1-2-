@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class player2move : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public int lives = 1;
 
@@ -15,7 +14,6 @@ public class player2move : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 velocity1 = rb.velocity;
